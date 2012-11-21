@@ -3,7 +3,7 @@
 require 'rack'
 
 use Rack::Static,
-    :urls          => %w(/humans.txt /css /js),
+    :urls          => %w(/humans.txt /css /js /favicon.png),
     :root          => 'public',
     :cache_control => 'public, max-age=3000000',
     :index         => 'index.html'
