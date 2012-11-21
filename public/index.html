@@ -28,16 +28,152 @@
 
     <!-- Begin slides -->
 
-    <section id="init" class="slide">
-      <h1>Slide</h1>
+    <section id="title" class="slide">
+      <h1>Ruby Development Stack</h1>
     </section>
 
-    <section id="boot" class="slide">
-      <h1>Content</h1>
+    <section id="interpreters" class="slide">
+      <h2>Ruby interpreters</h2>
+      <ul>
+        <li>MRI (Matz's Ruby Interpreter): 1.8.7, 1.9.3, 2.0.0-preview1
+          <ul>
+            <li>standard interpreter.</li>
+        </ul></li>
+        <li>REE: only 1.8.7 compatible. Discontinued.</li>
+        <li>JRuby: can execute java inside ruby. threading.</li>
+        <li>Rubinius: "provide a rich, high-performance environment for running Ruby code". threading. Byte code VM.</li>
+      </ul>
     </section>
 
-    <section class="slide">
-      <h1>Here</h1>
+    <section id="version-managers"class="slide">
+      <h2>Version manager</h2>
+      <ul>
+        <li>you can install many interpreters or different versions of an interpreter.</li>
+        <li>you can switch the interpreter.</li>
+        <li>you can test your app against various interpreters.</li>
+        <li>most importants:
+        <li>RVM</li>
+        <li>rbenv</li>
+      </ul>
+    </section>
+
+    <section id="rvm" class="slide">
+      <h2>RVM</h2>
+      <ul>
+        <li class="slide">the first one.</li>
+        <li class="slide">a lot of people use it.</li>
+        <li class="slide">constant development.</li>
+        <li class="slide">you can:
+          <ul>
+            <li class="slide">install many versions of ruby.</li>
+            <li class="slide">switch and a manage them.</li>
+            <li class="slide">gemsets.</li>
+            <li class="slide">ruby per project.</li>
+            <li class="slide">more...</li>
+          </ul>
+        </li>
+        <li class="slide">you have a GUI for Mac: http://unfiniti.com/software/mac/jewelrybox/</li>
+        <li class="slide">it's a beast: redefines some shell functions (like <code>cd</code>).</li>
+        <li class="slide">needs to install extra packages to install the ruby versions, instead of using the packages in the system.</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="rbenv">
+      <h2>rbenv</h2>
+
+      <ul>
+        <li>same principles as RVM: manage and control ruby versions.</li>
+        <li>does not install it, only manages.</li>
+        <li>configurable via plugins:
+          <ul>
+            <li>install: with ruby-build</li>
+            <li>gemsets</li>
+        </ul></li>
+        <li>it is easier.</li>
+        <li>more UNIX.</li>
+        <li>faster</li>
+        <li>i have no errors since i started using it</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="gem">
+      <h2>gem</h2>
+
+      <ul>
+        <li>part of the ruby interpreter.</li>
+        <li>package system for ruby.</li>
+        <li>share and install all kind of libs.</li>
+        <li>"A gem is a packaged Ruby application or library. It has a name (e.g. rake) and a version (e.g. 0.4.16)"</li>
+        <li>if you use a manager, each versions install its own gems.</li>
+        <li>basic gems: bundler and rake.</li>
+        <li>config file.</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="irb">
+      <h2>irb</h2>
+
+      <ul>
+        <li>part of the ruby interpreter.</li>
+        <li>quick and easy way to execute ruby code.</li>
+        <li>useful for testing.</li>
+        <li>example</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="bundler-1">
+      <h2>Bundler: the basics</h2>
+
+      <ul>
+        <li>it is a gem.</li>
+        <li>manage all the dependencies of your app.</li>
+        <li>resolves the "dependency hell".</li>
+        <li>two key files:
+          <ul>
+            <li>Gemfile: declare all the needed gems.</li>
+            <li>Gemfile.lock: bundle sets all the versions and dependencies.</li>
+        </ul></li>
+        <li>install and update gems</li>
+        <li><p>add all the gems in the Gemfile available in the load path</p></li>
+      </ul>
+    </section>
+
+    <section class="slide" id="bundler-2">
+      <h2>Bundler: tips</h2>
+      <ul>
+        <li><p>use groups.</p></li>
+        <li>use --path</li>
+        <li>use bin</li>
+        <li>example</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="rake">
+      <h2>rake</h2>
+
+      <ul>
+        <li>it is a gem.</li>
+        <li>the <code>make</code> of ruby.</li>
+        <li>de facto system to create small tasks.</li>
+        <li>has its own DSL.</li>
+        <li>example.</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="rails">
+      <h2>rails?</h2>
+
+      <ul>
+        <li>something about rails cli.</li>
+        <li>something about rails libs.</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="app">
+      <h2>mini app with sinatra</h2>
+      <ul>
+        <li>hello world?</li>
+      </ul>
     </section>
 
     <!-- End slides. -->
