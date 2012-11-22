@@ -35,46 +35,116 @@
     <section id="interpreters" class="slide">
       <h2>Ruby interpreters</h2>
       <ul>
-        <li>MRI (Matz's Ruby Interpreter): 1.8.7, 1.9.3, 2.0.0-preview1
-          <ul>
-            <li>standard interpreter.</li>
-        </ul></li>
-        <li>REE: only 1.8.7 compatible. Discontinued.</li>
-        <li>JRuby: can execute java inside ruby. threading.</li>
-        <li>Rubinius: "provide a rich, high-performance environment for running Ruby code". threading. Byte code VM.</li>
+        <li>MRI.</li>
+        <li>JRuby.</li>
+        <li>Rubinius.</li>
+        <li>REE (will be discontinued).</li>
+        <li>IronRuby (Mono).</li>
+        <li>MacRuby.</li>
+        <li>And more...</li>
       </ul>
     </section>
 
-    <section id="version-managers"class="slide">
+    <section class="slide" id="mri">
+      <h2>MRI</h2>
+      <blockquote>
+        <p>
+          Matz's Ruby Interpreter or Ruby MRI is the reference implementation of the Ruby programming language.
+        </p>
+        <cite>
+          <a href="http://en.wikipedia.org/wiki/Ruby_MRI">Wikipedia</a>
+        </cite>
+      </blockquote>
+      <ul>
+        <li>Versions:
+          <ul>
+            <li>1.8.7: Will be discontinued in 2013.</li>
+            <li>1.9.3: Current stable version.</li>
+            <li>2.0.0-preview1: New features. Comming February 2013.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="slide" id="jruby">
+      <h2>JRuby</h2>
+      <blockquote>
+        <p>
+          JRuby is a 100% Java implementation of the Ruby programming language. It is Ruby for the JVM.
+        </p>
+        <cite>
+          <a href="https://github.com/jruby/jruby/wiki/AboutJRuby">
+            https://github.com/jruby/jruby/wiki/AboutJRuby
+          </a>
+        </cite>
+      </blockquote>
+      <ul>
+        <li>Can execute Java inside Ruby.</li>
+        <li>Better threads management.</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="rubinius">
+      <h2>Rubinius</h2>
+      <blockquote>
+        <p>
+          Provide a rich, high-performance environment for running Ruby code.
+        </p>
+        <cite>
+          <a href="http://en.wikipedia.org/wiki/Rubinius">Wikipedia</a>
+        </cite>
+      </blockquote>
+
+      <ul>
+        <li>Includes a bytecode virtual machine.</li>
+        <li>Compiles to bytecode.</li>
+        <li>Better threads management.</li>
+      </ul>
+    </section>
+
+    <section id="version-manager" class="slide">
       <h2>Version manager</h2>
       <ul>
-        <li>you can install many interpreters or different versions of an interpreter.</li>
-        <li>you can switch the interpreter.</li>
-        <li>you can test your app against various interpreters.</li>
-        <li>most importants:
-        <li>RVM</li>
-        <li>rbenv</li>
+        <li>You can install many interpreters.</li>
+        <li>You can switch the interpreter.</li>
+        <li>You can test your app against various interpreters.</li>
+        <li>Most importants:
+          <ul>
+            <li>RVM</li>
+            <li>rbenv</li>
+          </ul>
+        </li>
       </ul>
     </section>
 
     <section id="rvm" class="slide">
       <h2>RVM</h2>
       <ul>
-        <li class="slide">the first one.</li>
-        <li class="slide">a lot of people use it.</li>
-        <li class="slide">constant development.</li>
-        <li class="slide">you can:
+        <li>Widely used.</li>
+        <li>Active development.</li>
+        <li>
+          With it you can:
           <ul>
-            <li class="slide">install many versions of ruby.</li>
-            <li class="slide">switch and a manage them.</li>
-            <li class="slide">gemsets.</li>
-            <li class="slide">ruby per project.</li>
-            <li class="slide">more...</li>
+            <li>Install many versions of ruby.</li>
+            <li>Manage gemsets.</li>
           </ul>
         </li>
-        <li class="slide">you have a GUI for Mac: http://unfiniti.com/software/mac/jewelrybox/</li>
-        <li class="slide">it's a beast: redefines some shell functions (like <code>cd</code>).</li>
-        <li class="slide">needs to install extra packages to install the ruby versions, instead of using the packages in the system.</li>
+        <li>
+          It has a GUI for Mac:
+          <a href="http://unfiniti.com/software/mac/jewelrybox/">
+            jewelrybox
+          </a>
+        </li>
+      </ul>
+      <h4>But...</h4>
+      <ul>
+        <li>
+          It override some shell functions (like <code>cd</code> and <code>gem</code>).
+        </li>
+        <li>
+          It install its own packages instead of use the ones available in the system (openssl, ...).
+        </li>
+        <li>Sometimes is a pain.</li>
       </ul>
     </section>
 
@@ -82,31 +152,42 @@
       <h2>rbenv</h2>
 
       <ul>
-        <li>same principles as RVM: manage and control ruby versions.</li>
-        <li>does not install it, only manages.</li>
-        <li>configurable via plugins:
+        <li>Same principles as RVM: manage and control ruby versions.</li>
+        <li>Does not install interpreters, only manages them.</li>
+        <li>Configurable via plugins:
           <ul>
-            <li>install: with ruby-build</li>
-            <li>gemsets</li>
-        </ul></li>
-        <li>it is easier.</li>
-        <li>more UNIX.</li>
-        <li>faster</li>
-        <li>i have no errors since i started using it</li>
+            <li>Install (with ruby-build).</li>
+            <li>Gemsets.</li>
+          </ul>
+        </li>
+        <li>It is easier.</li>
+        <li>More UNIX.</li>
+        <li>Faster</li>
+        <li>Only manipulates env variables, like <code>PATH</code>.</li>
       </ul>
     </section>
 
+    <section class="slide" id="gem-command">
+      <h2>Gem (command)</h2>
+      <ul>
+        <li>Part of the ruby interpreter.</li>
+        <li>Package system for ruby.</li>
+        <li>If you use a manager, each version install its own gems.</li>
+        <li>Basic gems: <code>bundler</code> and <code>rake</code>.</li>
+        <li>Has a config file (<code>~/.gemrc</code>).</li>
+      </ul>
+      <h4>Example</h4>
+      <pre>$ gem install rake --version 0.3.1 --force</pre>
+    </section>
+
     <section class="slide" id="gem">
-      <h2>gem</h2>
+      <h2>Gem (package)</h2>
+      <blockquote>
+        A gem is a packaged Ruby application or library. It has a name (e.g. rake) and a version (e.g. 0.4.16)
+      </blockquote>
 
       <ul>
-        <li>part of the ruby interpreter.</li>
-        <li>package system for ruby.</li>
-        <li>share and install all kind of libs.</li>
-        <li>"A gem is a packaged Ruby application or library. It has a name (e.g. rake) and a version (e.g. 0.4.16)"</li>
-        <li>if you use a manager, each versions install its own gems.</li>
-        <li>basic gems: bundler and rake.</li>
-        <li>config file.</li>
+        <li>Once a gem is installed, is available in the ruby load path</li>
       </ul>
     </section>
 
@@ -114,50 +195,86 @@
       <h2>irb</h2>
 
       <ul>
-        <li>part of the ruby interpreter.</li>
-        <li>quick and easy way to execute ruby code.</li>
-        <li>useful for testing.</li>
-        <li>example</li>
+        <li>Part of the ruby interpreter.</li>
+        <li>Quick and easy way to execute ruby code.</li>
+        <li>Useful for testing.</li>
       </ul>
+      <h3>Example</h3>
+      <pre>$ irb
+irb(main):001:0> IRB.rc_file
+=> "/Users/jhbabon/.irbrc"
+irb(main):002:0> hello = lambda { |p| puts "Hello #{p}" }
+=> #<Proc:0x007fdc14873398@(irb):22 (lambda)>
+irb(main):003:0> hello.call('world')
+Hello world
+=> nil</pre>
     </section>
 
-    <section class="slide" id="bundler-1">
+    <section class="slide" id="bundler-basics">
       <h2>Bundler: the basics</h2>
 
       <ul>
-        <li>it is a gem.</li>
-        <li>manage all the dependencies of your app.</li>
-        <li>resolves the "dependency hell".</li>
-        <li>two key files:
+        <li>It is a gem.</li>
+        <li>Manage all the dependencies of your app.</li>
+        <li>Resolves the "dependency hell".</li>
+        <li>Two key files:
           <ul>
-            <li>Gemfile: declare all the needed gems.</li>
-            <li>Gemfile.lock: bundle sets all the versions and dependencies.</li>
+            <li><code>Gemfile</code>: ruby file to declare all the needed gems.</li>
+            <li><code>Gemfile.lock</code>: managed by bundler. Sets all the versions and dependencies.</li>
         </ul></li>
-        <li>install and update gems</li>
-        <li><p>add all the gems in the Gemfile available in the load path</p></li>
+        <li>Install and update gems.</li>
+        <li>All the gems in the Gemfile are available in the load path.</li>
       </ul>
     </section>
 
-    <section class="slide" id="bundler-2">
+    <section class="slide" id="bundler-tips">
       <h2>Bundler: tips</h2>
       <ul>
-        <li><p>use groups.</p></li>
-        <li>use --path</li>
-        <li>use bin</li>
-        <li>example</li>
+        <li>Use groups.</li>
+        <li>
+          <p>Use <code>--path</code> and <code>--binstubs</code> options.</p>
+          <pre>$ bundle install --path=vendor/bundle</pre>
+          <pre>$ bundle install --binstubs</pre>
+        </li>
       </ul>
+    </section>
+
+    <section class="slide" id="bundler-example">
+      <h2>Bundler: example</h2>
+      <pre># Gemfile
+source 'https://rubygems.org/'
+
+gem 'rack', '~> 1.4.1'
+gem 'thin', '= 1.5'
+gem 'rspec', group: :test</pre>
     </section>
 
     <section class="slide" id="rake">
-      <h2>rake</h2>
+      <h2>Rake</h2>
 
       <ul>
-        <li>it is a gem.</li>
-        <li>the <code>make</code> of ruby.</li>
-        <li>de facto system to create small tasks.</li>
-        <li>has its own DSL.</li>
-        <li>example.</li>
+        <li>It is a gem.</li>
+        <li>The <code>make</code> of ruby.</li>
+        <li>Standard system to create all kind of tasks.</li>
+        <li>Declarative DSL.</li>
+        <li>Uses a <code>Rakefile</code>.</li>
       </ul>
+    </section>
+
+    <section class="slide" id="rake-example">
+      <h2>Rake example</h2>
+
+      <pre># Rakefile
+# example from: http://rake.rubyforge.org/
+task default: [:test]
+
+task :test do
+  $stdout.puts "---> Executing all tests"
+  ruby "test/unittest.rb"
+end</pre>
+      <pre>$ bundle exec rake
+---> Executing all tests
+# tests are executed ...</pre>
     </section>
 
     <section class="slide" id="rails">
