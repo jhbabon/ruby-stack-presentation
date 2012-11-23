@@ -70,7 +70,7 @@
       <h2>JRuby</h2>
       <blockquote>
         <p>
-          JRuby is a 100% Java implementation of the Ruby programming language. It is Ruby for the JVM.
+          JRuby is a 100% Java implementation of the Ruby programming language. It's Ruby for the JVM.
         </p>
         <cite>
           <a href="https://github.com/jruby/jruby/wiki/AboutJRuby">
@@ -117,7 +117,7 @@
       </ul>
     </section>
 
-    <section id="rvm" class="slide">
+    <section id="rvm-1" class="slide">
       <h2>RVM</h2>
       <ul>
         <li>Widely used.</li>
@@ -136,10 +136,14 @@
           </a>
         </li>
       </ul>
+    </section>
+
+    <section id="rvm-2" class="slide">
+      <h2>RVM</h2>
       <h4>But...</h4>
       <ul>
         <li>
-          It override some shell functions (like <code>cd</code> and <code>gem</code>).
+          It overrides some shell functions (like <code>cd</code> and <code>gem</code>).
         </li>
         <li>
           It install its own packages instead of use the ones available in the system (openssl, ...).
@@ -153,144 +157,176 @@
 
       <ul>
         <li>Same principles as RVM: manage and control ruby versions.</li>
-        <li>Does not install interpreters, only manages them.</li>
+        <li>It doesn't install interpreters, only manages them.</li>
         <li>Configurable via plugins:
           <ul>
             <li>Install (with ruby-build).</li>
             <li>Gemsets.</li>
           </ul>
         </li>
-        <li>It is easier.</li>
+        <li>Easy. Faster.</li>
         <li>More UNIX.</li>
-        <li>Faster</li>
-        <li>Only manipulates env variables, like <code>PATH</code>.</li>
+        <li>Only manipulates shell env variables, like <code>PATH</code>.</li>
       </ul>
     </section>
 
     <section class="slide" id="gem-command">
-      <h2>Gem (command)</h2>
+      <h2>Gem: Command</h2>
       <ul>
         <li>Part of the ruby interpreter.</li>
-        <li>Package system for ruby.</li>
+        <li>Package manager for ruby.</li>
         <li>If you use a manager, each version install its own gems.</li>
         <li>Basic gems: <code>bundler</code> and <code>rake</code>.</li>
-        <li>Has a config file (<code>~/.gemrc</code>).</li>
+        <li>It has a config file (<code>~/.gemrc</code>).</li>
       </ul>
       <h4>Example</h4>
-      <pre>$ gem install rake --version 0.3.1 --force</pre>
+      <script src="https://gist.github.com/4135230.js?file=gem_install.sh"></script>
     </section>
 
     <section class="slide" id="gem">
-      <h2>Gem (package)</h2>
+      <h2>Gem: Package</h2>
       <blockquote>
         A gem is a packaged Ruby application or library. It has a name (e.g. rake) and a version (e.g. 0.4.16)
       </blockquote>
 
       <ul>
-        <li>Once a gem is installed, is available in the ruby load path</li>
+        <li>Once a gem is installed, is available in the ruby load path.</li>
       </ul>
     </section>
 
     <section class="slide" id="irb">
-      <h2>irb</h2>
+      <h2>IRB</h2>
 
       <ul>
         <li>Part of the ruby interpreter.</li>
         <li>Quick and easy way to execute ruby code.</li>
         <li>Useful for testing.</li>
+        <li>It can control jobs, manipulate sessions and connect to remote servers.</li>
       </ul>
-      <h3>Example</h3>
-      <pre>$ irb
-irb(main):001:0> IRB.rc_file
-=> "/Users/jhbabon/.irbrc"
-irb(main):002:0> hello = lambda { |p| puts "Hello #{p}" }
-=> #<Proc:0x007fdc14873398@(irb):22 (lambda)>
-irb(main):003:0> hello.call('world')
-Hello world
-=> nil</pre>
     </section>
 
+    <section class="slide" id="irb-example">
+      <h2>IRB: Usage example</h2>
+      <script src="https://gist.github.com/4135230.js?file=irb_example.sh"></script>
+    </section>
+
+
     <section class="slide" id="bundler-basics">
-      <h2>Bundler: the basics</h2>
+      <h2>Bundler: The basics</h2>
 
       <ul>
-        <li>It is a gem.</li>
+        <li>It's a gem.</li>
         <li>Manage all the dependencies of your app.</li>
-        <li>Resolves the "dependency hell".</li>
+        <li>Resolves the <em>dependency hell</em>.</li>
         <li>Two key files:
           <ul>
             <li><code>Gemfile</code>: ruby file to declare all the needed gems.</li>
-            <li><code>Gemfile.lock</code>: managed by bundler. Sets all the versions and dependencies.</li>
-        </ul></li>
-        <li>Install and update gems.</li>
-        <li>All the gems in the Gemfile are available in the load path.</li>
-      </ul>
-    </section>
-
-    <section class="slide" id="bundler-tips">
-      <h2>Bundler: tips</h2>
-      <ul>
-        <li>Use groups.</li>
-        <li>
-          <p>Use <code>--path</code> and <code>--binstubs</code> options.</p>
-          <pre>$ bundle install --path=vendor/bundle</pre>
-          <pre>$ bundle install --binstubs</pre>
+            <li><code>Gemfile.lock</code>: managed by bundler. Sets all the versions and dependencies. <strong>Never write in this file!</strong></li>
+          </ul>
         </li>
+        <li>Install and update gems.</li>
+        <li>All the gems in the Gemfile are available in the app's load path.</li>
       </ul>
     </section>
 
     <section class="slide" id="bundler-example">
-      <h2>Bundler: example</h2>
-      <pre># Gemfile
-source 'https://rubygems.org/'
+      <h2>Bundler: Gemfile example</h2>
+      <script src="https://gist.github.com/4135230.js?file=Gemfile"></script>
+    </section>
 
-gem 'rack', '~> 1.4.1'
-gem 'thin', '= 1.5'
-gem 'rspec', group: :test</pre>
+    <section class="slide" id="bundler-ruby-usage">
+      <h2>Bundler: Ruby usage</h2>
+      <script src="https://gist.github.com/4135230.js?file=bundler_ruby_usage.rb"></script>
+    </section>
+
+    <section class="slide" id="bundler-tips">
+      <h2>Bundler: Tips</h2>
+      <ul>
+        <li><strong>Always</strong> use bundler to manage your app dependencies.</li>
+        <li>Use groups.</li>
+        <li>
+          <p>Use <code>--path</code> and <code>--binstubs</code> options.</p>
+          <script src="https://gist.github.com/4135230.js?file=bundle_install_example.sh"></script>
+        </li>
+        <li>
+          <p>Use a config file in <code>~/.bundle/config</code></p>
+          <script src="https://gist.github.com/4135230.js?file=bundle_config.yml"></script>
+        </li>
+      </ul>
     </section>
 
     <section class="slide" id="rake">
       <h2>Rake</h2>
 
       <ul>
-        <li>It is a gem.</li>
+        <li>It's a gem.</li>
         <li>The <code>make</code> of ruby.</li>
         <li>Standard system to create all kind of tasks.</li>
-        <li>Declarative DSL.</li>
-        <li>Uses a <code>Rakefile</code>.</li>
+        <li>Declarative and powerful DSL.</li>
+        <li>Uses a ruby file called <code>Rakefile</code>.</li>
       </ul>
     </section>
 
     <section class="slide" id="rake-example">
-      <h2>Rake example</h2>
+      <h2>Rake: Usage example</h2>
 
-      <pre># Rakefile
-# example from: http://rake.rubyforge.org/
-task default: [:test]
-
-task :test do
-  $stdout.puts "---> Executing all tests"
-  ruby "test/unittest.rb"
-end</pre>
-      <pre>$ bundle exec rake
----> Executing all tests
-# tests are executed ...</pre>
+      <script src="https://gist.github.com/4135230.js?file=Rakefile"></script>
+      <script src="https://gist.github.com/4135230.js?file=rake_usage_example.sh"></script>
     </section>
 
     <section class="slide" id="rails">
-      <h2>rails?</h2>
-
+      <h2>Rails</h2>
+      <h5><small>A extremely basic introduction.</small></h5>
       <ul>
-        <li>something about rails cli.</li>
-        <li>something about rails libs.</li>
+        <li>
+          <p>It's a <em>meta-gem</em> (a group of gems):</p>
+          <ul>
+            <li><code>actionmailer</code></li>
+            <li><code>actionpack</code></li>
+            <li><code>activemodel</code></li>
+            <li><code>activerecord</code></li>
+            <li><code>activesupport</code></li>
+          </ul>
+        </li>
+        <li>It has a complete command line utilities for: code generation, database manipulation, testing, etc.</li>
       </ul>
     </section>
 
-    <section class="slide" id="app">
-      <h2>mini app with sinatra</h2>
+    <section class="slide" id="rails-cli">
+      <h2>Rails: Command line basics</h2>
       <ul>
-        <li>hello world?</li>
+        <li>
+          The <code>rails</code> command:
+          <ul>
+            <li><code>rails console</code></li>
+            <li><code>rails server</code></li>
+            <li><code>rails generate</code></li>
+            <li><code>rails dbconsole</code></li>
+            <li><code>rails new app_name</code></li>
+          </ul>
+        </li>
+        <li>
+          <code>rake</code> tasks:
+          <ul>
+            <li>Used for common administration tasks.</li>
+            <li>Manipulate the <code>db</code>, <code>assets</code>, etc.</li>
+            <li>You can create your own tasks.</li>
+          </ul>
+        </li>
       </ul>
+    </section>
+
+    <section class="slide" id="rails-examples">
+      <h2>Rails: Task examples</h2>
+      <script src="https://gist.github.com/4135230.js?file=rails_task_example.sh"></script>
+    </section>
+
+    <section class="slide" id="end">
+      <h1>
+        <p>
+          Q&A
+        </p>
+      </h1>
     </section>
 
     <!-- End slides. -->
