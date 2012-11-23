@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+env  = ENV['RACK_ENV'] || 'production'
+port = ENV['PORT']     || 8080
+
+exec "bundle exec thin start -R config.ru -e #{env} -p #{port}"
+
+# vi: set ft=ruby :
